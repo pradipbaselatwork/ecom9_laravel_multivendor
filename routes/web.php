@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\Front\VendorController;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Front\AddressController;
+use App\Http\Controllers\front\CmsController;
 use App\Http\Controllers\front\EsewaController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\front\PaypalController;
@@ -211,6 +212,11 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
 
     //Search Products
     Route::get('/search-products', [ProductsController::class, 'listing'])->name('search-products');
+
+    //
+    Route::match(['get', 'post'], '/' . $url, [ProductsController::class, 'listing'])->name('listing');
+
+    Route::match(['get', 'post'],'contact', [CmsController::class, 'contact'])->name('contact');
 
     Route::group(['middleware' => ['auth']], function () {
         //User Account
