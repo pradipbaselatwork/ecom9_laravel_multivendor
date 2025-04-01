@@ -10,7 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Laravel Multi Vendor E-commerce Template - By Stack Developers Youtube Channel</title>
+    @php
+        // $meta_title = "Multi Vendor E-ecommerce Wesbite";
+        // $meta_description = "Online shoopping website deals in Clothing, Electronics ,Appliances & Products";
+        // $meta_keywords = "eshop website, multivendor, online shopping";
+    @endphp
+    <title>{{ (isset($meta_title) ? strtoupper($meta_title) : 'Ecom Website') . ' | BLACK RAIN' }}</title>
+    <meta name="description" content="{{ $meta_description ?? 'Ecom description' }}">
+    <meta name="keywords" content="{{ $meta_keywords ?? 'Ecom, keywords' }}">
+
     <!-- Standard Favicon -->
     <link href="favicon.ico" rel="shortcut icon">
     <!-- Base Google Font for Web-app -->

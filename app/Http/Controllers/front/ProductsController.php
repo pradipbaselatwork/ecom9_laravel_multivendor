@@ -98,7 +98,10 @@ class ProductsController extends Controller
                     $categoryProducts->whereIn('products.id', $productIds);
                 }
                 $categoryProducts = $categoryProducts->paginate(7);
-                return view('front.products.ajax_products_listing')->with(compact('categoryDetails', 'categoryProducts', 'url'));
+                $meta_title = "Multi Vendor E-ecommerce Wesbite";
+                $meta_description = "Online shoopping website deals in Clothing, Electronics ,Appliances & Products";
+                $meta_keywords = "eshop website, multivendor, online shopping";
+                return view('front.products.ajax_products_listing')->with(compact('categoryDetails', 'categoryProducts', 'url','meta_title','meta_description','meta_keywords'));
             } else {
                 abort(404);
             }
@@ -150,8 +153,9 @@ class ProductsController extends Controller
                         }
                     }
     
-                    $categoryProducts = $categoryProducts->paginate(7);
-                    return view('front.products.listing')->with(compact('categoryDetails', 'categoryProducts', 'url'));
+                    $categoryProducts = $categoryProducts->paginate(6);
+                    $meta_title = $categoryDetails['categoryDetails']['url'];
+                    return view('front.products.listing')->with(compact('categoryDetails', 'categoryProducts', 'url','meta_title'));
                 } else {
                     abort(404);
                 }
@@ -210,7 +214,11 @@ class ProductsController extends Controller
         }
 
         $totalStock = ProductAttribute::where('product_id', $id)->sum('stock');
-        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'totalStock', 'similarProducts', 'recentlyViewedProducts', 'groupProducts'));
+
+        $meta_title = $productDetails['meta_title'];
+        $meta_description = $productDetails['meta_description'];
+        $meta_keywords = $productDetails['meta_keywords'];
+        return view('front.products.detail')->with(compact('productDetails', 'categoryDetails', 'totalStock', 'similarProducts', 'recentlyViewedProducts', 'groupProducts','meta_title','meta_description','meta_keywords'));
     }
 
     public function getProductPrice(Request $request)
@@ -282,7 +290,9 @@ class ProductsController extends Controller
     public function cart()
     {
         $getCartItems = Cart::getCartItems();
-        return view('front.products.cart')->with(compact('getCartItems'));
+        $meta_title = "Shopping Cart - Multi Vendor E-ecommerce Wesbite";
+        $meta_keywords = "Shopping Cart, multi vendor";
+        return view('front.products.cart')->with(compact('getCartItems','meta_title','meta_keywords'));
     }
 
     public function cartUpdate(Request $request)
