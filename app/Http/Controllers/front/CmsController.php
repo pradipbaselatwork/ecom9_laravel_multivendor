@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\Mail;
 
 class CmsController extends Controller
 {
+    public function cmsPage(){
+        $currentRoute =url()->current();
+        $currentRoute =str_replace("http://www.ecom9laravelmultivendor.local.com/","",$currentRoute);
+        $cmsRoutes =CmsPage::select('url')->where('status',1)->get()->pluck('url')->toArray();
+        if(in_array($currentRoute,$cmsRoutes)){
+            $cmsPageDetails = CmsPage::where('url',$currentRoute)->first()->toArray();
+            $meta_title =  $cmsPageDetails['meta_title'];
+            $meta_keywords =  $cmsPageDetails['meta_keywords'];
+            $meta_description =  $cmsPageDetails['meta_description'];
+            return view('front.pages.cms_page')->with(compact('cmsPageDetails','meta_title','meta_description','meta_keywords'));
+        }else{
+            abort(404);
+        }
+    }
+
     public function contact(Request $request)
     {
         if ($request->isMethod('post')) {
@@ -26,7 +41,7 @@ class CmsController extends Controller
                 'name.required' => 'Name is required',
                 'email.required' => 'Email is required',
                 'email.email' => 'Please enter a valid Email address',
-                'subject.required' => 'Subject is required',
+                'subject.required' => 'Subject is required',+
                 'message.required' => 'Message is required',
             ];
     
