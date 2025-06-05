@@ -128,8 +128,9 @@
                     </a>
                     <div class="collapse" id="ui-users">
                         <ul class="nav flex-column sub-menu" style="background:#fff !important;">
-                          <li class="nav-item"> <a @if(Session::get('page')=="users") style="background:#4B49AC !important; color: #fff !important;" @else style="background:#fff !important; color: #4B49AC !important;" @endif class="nav-link" href="{{ url('admin/users')}}">Users</a></li>
-                    </div>
+                            <li class="nav-item"> <a @if(Session::get('page')=="users") style="background:#4B49AC !important; color: #fff !important;" @else style="background:#fff !important; color: #4B49AC !important;" @endif class="nav-link" href="{{ url('admin/users')}}">Users</a></li>
+                            <li class="nav-item"> <a @if(Session::get('page')=="subscribers") style="background:#4B49AC !important; color: #fff !important;" @else style="background:#fff !important; color: #4B49AC !important;" @endif class="nav-link" href="{{ url('admin/subscribers')}}">Subscribers</a></li>
+                        </div>
                 </li>
 
                 <li class="nav-item">
@@ -161,7 +162,7 @@
                 </li>
             @endif
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
                     aria-controls="form-elements">
                     <i class="icon-columns menu-icon"></i>
@@ -249,6 +250,6 @@
                     <i class="icon-paper menu-icon"></i>
                     <span class="menu-title">Documentation</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </nav>

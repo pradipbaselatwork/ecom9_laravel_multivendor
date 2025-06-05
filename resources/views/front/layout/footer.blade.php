@@ -27,13 +27,13 @@
                             <h6>COMPANY</h6>
                             <ul>
                                 <li>
-                                    <a href="about.html">About Us</a>
+                                    <a href="{{ url('about-us') }}">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact Us</a>
+                                    <a href="{{ route('contact') }}">Contact Us</a>
                                 </li>
                                 <li>
-                                    <a href="faq.html">FAQ</a>
+                                    <a href="{{ url('faq') }}">FAQ</a>
                                 </li>
                             </ul>
                         </div>
@@ -43,13 +43,13 @@
                             <h6>COLLECTION</h6>
                             <ul>
                                 <li>
-                                    <a href="cart.html">Men Clothing</a>
+                                    <a href="{{ url('men') }}">Men Clothing</a>
                                 </li>
                                 <li>
-                                    <a href="checkout.html">Women Clothing</a>
+                                    <a href="{{ url('women') }}">Women Clothing</a>
                                 </li>
                                 <li>
-                                    <a href="account.html">Kids Clothing</a>
+                                    <a href="{{ url('kids') }}">Kids Clothing</a>
                                 </li>
                             </ul>
                         </div>
@@ -59,13 +59,13 @@
                             <h6>ACCOUNT</h6>
                             <ul>
                                 <li>
-                                    <a href="shop-v1-root-category.html">My Account</a>
+                                    <a href="{{ route('user-account') }}">My Account</a>
                                 </li>
+                                {{-- <li>
+                                    <a href="{{ route('user-orders') }}">My Profile</a>
+                                </li> --}}
                                 <li>
-                                    <a href="shop-v1-root-category.html">My Profile</a>
-                                </li>
-                                <li>
-                                    <a href="listing.html">My Orders</a>
+                                    <a href="{{ route('user-orders') }}">My Orders</a>
                                 </li>
                             </ul>
                         </div>
@@ -76,19 +76,18 @@
                             <ul>
                                 <li>
                                     <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                    <span>Stack Developers Youtube Channel</span>
+                                    <span>WebHatDevelopers Youtube Channel</span>
                                 </li>
                                 <li>
-                                    <a href="tel:+111-222-333">
+                                    <a href="tel:+90000000000">
                                         <i class="fas fa-phone u-s-m-r-9"></i>
-                                        <span>+111-222-333</span>
+                                        <span>+90000000000</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mailto:info@sitemakers.in">
+                                    <a href="webhatdevelopers@gmail.com">
                                         <i class="fas fa-envelope u-s-m-r-9"></i>
-                                        <span>
-                                            info@sitemakers.in</span>
+                                        <span>webhatdevelopers@gmail.com</span>
                                     </a>
                                 </li>
                             </ul>
@@ -102,44 +101,44 @@
                 <div class="social-media-wrapper">
                     <ul class="social-media-list">
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-google-plus-g"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fas fa-rss"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-pinterest"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a target="_blank" href="https://www.youtube.com/@webhatdevelopers">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <p class="copyright-text">Copyright &copy; 2022
-                    <a target="_blank" rel="nofollow" href="https://youtube.com/stackdevelopers">Stack Developers</a> |
+                    <a target="_blank" rel="nofollow" href="https://www.youtube.com/@webhatdevelopers">Web Hat Developers</a> |
                     All Right Reserved
                 </p>
             </div>

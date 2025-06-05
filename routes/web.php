@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ShippingController;
-
+use App\Http\Controllers\Admin\NewsletterSubscriberController;
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductsController;
@@ -140,7 +140,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::match(['get', 'post'], 'add-edit-coupon/{id?}', [CouponsController::class, 'addEditCoupon'])->name('add-edit-coupon');
 
         //Users ADMIN ROUTE
-        Route::get('users', [UsersController::class, 'users'])->name('users')->name('users');
+        Route::get('users', [UsersController::class, 'users'])->name('users');
         Route::post('update-users-status', [UsersController::class, 'updateUsersStatus'])->name('update-users-status');
 
         //Orders ADMIN ROUTE
@@ -159,6 +159,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::match(['get', 'post'], 'add-edit-shipping-charges/{id?}', [ShippingController::class, 'addEditShippingCharges'])->name('add-edit-shipping-charges');
         Route::get('delete-shipping/{id}', [ShippingController::class, 'deleteShippingCharges'])->name('delete-shipping');
 
+        //News letter Subscriber Route
+        Route::get('subscribers', [NewsletterSubscriberController::class, 'subscribers'])->name('subscribers');
+        Route::post('update-subscribers-status', [NewsletterSubscriberController::class, 'updateSubscriberStatus'])->name('update-subscribers-status');
     });
 });
 

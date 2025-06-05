@@ -31,16 +31,16 @@ $totalCartItems = totalCartItems();
                         </a>
                         <ul class="g-dropdown" style="width:200px">
                             <li>
-                                <a href="{{ route('index') }}"><i class="fas fa-cog u-s-m-r-9"></i>My Cart</a>
+                                <a href="{{ route('cart') }}"><i class="fas fa-cog u-s-m-r-9"></i>My Cart</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="wishlist.html"><i class="far fa-heart u-s-m-r-9"></i>My Wishlist</a>
-                            </li>
-
-                             {{-- <li>
-                                <a href="checkout.html">
-                                    <i class="far fa-check-circle u-s-m-r-9"></i>Checkout</a>
                             </li> --}}
+
+                             <li>
+                                <a href="{{ route('checkout') }}">
+                                    <i class="far fa-check-circle u-s-m-r-9"></i>Checkout</a>
+                            </li>
                         @if(Auth::check())
                             <li>
                                 <a href="{{ route('user-account') }}"><i class="fas fa-sign-in-alt u-s-m-r-9"></i>My Account</a>
@@ -128,20 +128,20 @@ $totalCartItems = totalCartItems();
                     <nav>
                         <ul class="mid-nav g-nav">
                             <li class="u-d-none-lg">
-                                <a href="index.html">
+                                <a href="{{ route('index') }}">
                                     <i class="ion ion-md-home u-c-brand"></i>
                                 </a>
                             </li>
-                            <li class="u-d-none-lg">
+                            {{-- <li class="u-d-none-lg">
                                 <a href="wishlist.html">
                                     <i class="far fa-heart"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a id="mini-cart-trigger">
                                     <i class="ion ion-md-basket"></i>
                                     <span class="item-counter totalCartItems">{{ $totalCartItems }}</span>
-                                    <span class="item-price">$220.00</span>
+                                    {{-- <span class="item-price">$220.00</span> --}}
                                 </a>
                             </li>
                         </ul>
@@ -159,10 +159,10 @@ $totalCartItems = totalCartItems();
             <button type="button" class="button fas fa-search" id="responsive-search"></button>
         </div>
         <div class="fixed-responsive-wrapper">
-            <a href="wishlist.html">
+            {{-- <a href="wishlist.html">
                 <i class="far fa-heart"></i>
                 <span class="fixed-item-counter">4</span>
-            </a>
+            </a> --}}
         </div>
     </div>
     <!-- Responsive-Buttons /- -->
@@ -259,37 +259,37 @@ $totalCartItems = totalCartItems();
                                 <ul>
                                     <li class="menu-title">COMPANY</li>
                                     <li>
-                                        <a href="about.html" class="u-c-brand">About Us</a>
+                                        <a href="{{ url('about-us') }}" class="u-c-brand">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="contact.html">Contact Us</a>
+                                        <a href="{{ route('contact') }}">Contact Us</a>
                                     </li>
                                     <li>
-                                        <a href="faq.html">FAQ</a>
+                                        <a href="{{ url('faq') }}">FAQ</a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li class="menu-title">COLLECTION</li>
                                     <li>
-                                        <a href="cart.html">Men Clothing</a>
+                                        <a href="{{ url('men') }}">Men Clothing</a>
                                     </li>
                                     <li>
-                                        <a href="checkout.html">Women Clothing</a>
+                                        <a href="{{ url('women') }}">Women Clothing</a>
                                     </li>
                                     <li>
-                                        <a href="account.html">Kids Clothing</a>
+                                        <a href="{{ url('kids') }}">Kids Clothing</a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li class="menu-title">ACCOUNT</li>
                                     <li>
-                                        <a href="shop-v1-root-category.html">My Account</a>
+                                        <a href="{{ route('user-account') }}">My Account</a>
                                     </li>
+                                    {{-- <li>
+                                        <a href="urer/profile">My Profile</a>
+                                    </li> --}}
                                     <li>
-                                        <a href="shop-v1-root-category.html">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="listing.html">My Orders</a>
+                                        <a href="{{ route('user-orders') }}">My Orders</a>
                                     </li>
 
                                 </ul>

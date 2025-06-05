@@ -17,6 +17,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\Guard as SanctumGuard;
+use App\Models\Section;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\Coupon;
+use App\Models\Brand;
+use App\Models\User;
+use App\Models\NewsletterSubscriber;
+
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -24,7 +33,16 @@ class AdminController extends Controller
     public function dashboard()
     {
         Session::put('page','dashboard');
-        return view('admin.dashboard');
+        $sectionsCount = Section::count();
+        $categoriesCount = Category::count();
+        $productsCount = Product::count();
+        $ordersCount = Order::count();
+        $couponsCount = Coupon::count();
+        $brandsCount = Brand::count();
+        $couponsCount = Coupon::count();
+        $usersCount = User::count();
+        $newsletterSubscribersCount = NewsletterSubscriber::count();
+        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','ordersCount','couponsCount','brandsCount','usersCount','newsletterSubscribersCount'));
     }
 
     public function updateAdminPassword(Request $request)
