@@ -13,9 +13,9 @@
                     Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.
                 </p>
                 <form class="newsletter-form">
-                    <label class="sr-only" for="newsletter-field">Enter your Email</label>
-                    <input type="text" id="newsletter-field" placeholder="Your Email Address">
-                    <button type="submit" class="button">SUBMIT</button>
+                <label class="sr-only" for="subscriber_email">Enter your Email</label>
+                <input type="text" name="subscriber_email" id="subscriber_email" placeholder="Your Email Address">
+                <button type="button" class="button" onclick="addSubscriber(event)">SUBMIT</button>
                 </form>
             </div>
             <!-- Outer-Footer /- -->

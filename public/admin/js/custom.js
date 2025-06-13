@@ -314,7 +314,7 @@ $(document).ready(function () {
         });
     });
 
-    //UPDATE PRODUCT STATUS
+    //UPDATE USER STATUS
     $(document).on("click", '.updateUsersStatus', function () {
         var status = $(this).children("i").attr("status");
         var user_id = $(this).attr("user_id");
@@ -337,6 +337,31 @@ $(document).ready(function () {
             }
         });
     });
+
+    //UPDATE SUBSCRIBER STATUS
+    $(document).on("click", '.updateSubscribersStatus', function () {
+        var status = $(this).children("i").attr("status");
+        var subscriber_id = $(this).attr("subscriber_id");
+        $.ajax({
+            type: 'post',
+            url: 'update-subscribers-status', 
+            data: { status: status, subscriber_id: subscriber_id },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (resp) {
+                // alert(resp);
+                if (resp['status'] == 0) {
+                    $("#subscriber-" + subscriber_id).html("<i style='font-size:25px' class='mdi mdi-bookmark-outline' status='Inactive'></i>")
+                } else if (resp['status'] == 1) {
+                    $("#subscriber-" + subscriber_id).html("<i style='font-size:25px' class='mdi mdi-bookmark-check' status='Active'></i>")
+                }
+            }, error: function () {
+                alert('Error');
+            }
+        });
+    });
+
 
     //PRODUCT ATTRIBUTES ADD/REMOVE SCRIPTS
 

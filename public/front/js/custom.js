@@ -465,3 +465,41 @@ function get_filter(class_name) {
     });
     return filter;
 }
+
+//news letter subscriber
+function addSubscriber(e) {debugger;
+  e.preventDefault(); 
+
+  const subscriber_email = $('#subscriber_email').val();
+  const mailFormat = /\S+@\S+\.\S+/;
+
+  if (!mailFormat.test(subscriber_email)) {
+    alert("Please enter a valid email!");
+    return false;
+  }
+
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'POST',
+    url: '/user-subscriber-email',
+    data: { subscriber_email },
+    success: function(resp) {debugger;
+      if (resp === "exists") {debugger;
+        alert("Your email already exists for Newsletter Subscription");
+      } else if (resp === "saved") {
+        alert("Thanks for subscribing!");
+        // optionally clear the field:
+        $('#subscriber_email').val('');
+      } else {debugger;
+        alert("Unexpected response: " + resp);
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error(error);
+      alert("An error occurred. Please try again later.");
+    }
+  });
+}
+

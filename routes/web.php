@@ -23,6 +23,7 @@ use App\Http\Controllers\front\CmsController;
 use App\Http\Controllers\front\EsewaController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\front\PaypalController;
+use App\Http\Controllers\front\NewsletterController;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
@@ -161,7 +162,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
         //News letter Subscriber Route
         Route::get('subscribers', [NewsletterSubscriberController::class, 'subscribers'])->name('subscribers');
-        Route::post('update-subscribers-status', [NewsletterSubscriberController::class, 'updateSubscriberStatus'])->name('update-subscribers-status');
+        Route::post('update-subscribers-status', [NewsletterSubscriberController::class, 'updateSubscribersStatus'])->name('update-subscribers-status');
+        Route::get('delete-subscriber/{id}', [NewsletterSubscriberController::class, 'deleteSubscriber'])->name('delete-subscriber');
+       
+        //Cms Pages Route
+        Route::get('/cms-pages', [CmsController::class, 'cmsPages'])->name('cms-pages');
+        Route::post('update-cms-pages-status', [CmsController::class, 'updateCmsPagesStatus'])->name('update-cms-pages-status');
     });
 });
 
@@ -219,7 +225,10 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     //
     Route::match(['get', 'post'], '/' . $url, [ProductsController::class, 'listing'])->name('listing');
 
-    Route::match(['get', 'post'],'contact', [CmsController::class, 'contact'])->name('contact');
+    Route::match(['get', 'post'],'contact', [CmsController::class, 'contact'])->name('contact');    
+
+    //add Subscriber email
+    Route::post('user-subscriber-email', [NewsletterController::class, 'addSubscriberEmail'])->name('user-subscriber-email');
 
     Route::group(['middleware' => ['auth']], function () {
         //User Account

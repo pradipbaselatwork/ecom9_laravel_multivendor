@@ -25,10 +25,16 @@
                                             </th>
                                             <th>
                                                 Email
-                                            {{-- </th>
+                                            </th>
+                                            <th>
+                                                Subscribed On
+                                            </th>
                                             <th>
                                                 Status
-                                            </th> --}}
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,8 +46,15 @@
                                                 <td>
                                                     {{ $subscriber['email'] }}
                                                 </td>
-                                                {{-- <td>
-                                                    @if ($Subscriber['status'] == 1)
+                                                <td>
+                                                @php
+                                                    date_default_timezone_set('Asia/Kathmandu');
+                                                @endphp
+
+                                                    {{ date('F j, Y, g:i a', strtotime($subscriber['created_at'])) }}
+                                                </td>
+                                                <td>
+                                                    @if ($subscriber['status'] == 1)
                                                         <a class="updateSubscribersStatus" id="subscriber-{{ $subscriber['id'] }}"
                                                             subscriber_id="{{ $subscriber['id'] }}" href="javascript:void(0)">
                                                             <i style="font-size: 25px" class="mdi mdi-bookmark-check"
@@ -52,7 +65,11 @@
                                                             <i style="font-size: 25px" class="mdi mdi-bookmark-outline"
                                                                 status="Inactive"></i></a>
                                                     @endif
-                                                </td> --}}
+                                                </td>
+                                                <td>
+                                                 <a href="javascript:void(0)" class="confirmDelete" module="subscriber" moduleid="{{ $subscriber['id'] }}" href="{{ url('admin/delete-subscriber/'.$subscriber['id']) }}"><i
+                                                            style="font-size: 25px" class="mdi mdi-file-excel-box"></i></a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
