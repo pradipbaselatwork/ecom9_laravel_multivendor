@@ -148,6 +148,20 @@
                 </li>
 
                 <li class="nav-item">
+                    <a @if(Session::get('page')=="cmspages") style="background:#4B49AC !important; color: #fff !important;" @endif class="nav-link" data-toggle="collapse" href="#ui-cmspages" aria-expanded="false"
+                        aria-controls="ui-cmspages">
+                        <i class="icon-layout menu-icon"></i>
+                        <span class="menu-title">Pages Management</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-cmspages">
+                        <ul class="nav flex-column sub-menu" style="background:#fff !important;">
+                            <li class="nav-item"> <a @if(Session::get('page')=="cmspages") style="background:#4B49AC !important; color: #fff !important;" @else style="background:#fff !important; color: #4B49AC !important;" @endif  class="nav-link"
+                                    href="{{ route('admin.cms-pages') }}">Cms Pages</a></li>
+                    </div>
+                </li>
+
+                <li class="nav-item">
                     <a @if(Session::get('page')=="shipping") style="background:#4B49AC !important; color: #fff !important;" @endif class="nav-link" data-toggle="collapse" href="#ui-shipping" aria-expanded="false"
                         aria-controls="ui-shipping">
                         <i class="icon-layout menu-icon"></i>

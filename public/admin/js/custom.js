@@ -362,8 +362,32 @@ $(document).ready(function () {
         });
     });
 
+    //UPDATE CMS ADMIN STATUS
+    $(document).on("click", '.updateCmsAdminStatus', function () {
+        var status = $(this).children("i").attr("status");
+        var cmspage_id = $(this).attr("cmspage_id");
+        $.ajax({
+            type: 'post',
+            url: 'update-cms-pages-status', 
+            data: { status: status, cmspage_id: cmspage_id },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (resp) {
+                // alert(resp);
+                if (resp['status'] == 0) {
+                    $("#cmspage-" + cmspage_id).html("<i style='font-size:25px' class='mdi mdi-bookmark-outline' status='Inactive'></i>")
+                } else if (resp['status'] == 1) {
+                    $("#cmspage-" + cmspage_id).html("<i style='font-size:25px' class='mdi mdi-bookmark-check' status='Active'></i>")
+                }
+            }, error: function () {
+                alert('Error');
+            }
+        });
+    });
 
-    //PRODUCT ATTRIBUTES ADD/REMOVE SCRIPTS
+
+    //PRODUCT ATTRIBUTES ADD/REMOVE SCRIPTS                                 
 
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector

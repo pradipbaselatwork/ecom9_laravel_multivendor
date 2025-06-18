@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\NewsletterSubscriberController;
+use App\Http\Controllers\admin\CmsAdminController;
 
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\ProductsController;
@@ -166,8 +167,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::get('delete-subscriber/{id}', [NewsletterSubscriberController::class, 'deleteSubscriber'])->name('delete-subscriber');
        
         //Cms Pages Route
-        Route::get('/cms-pages', [CmsController::class, 'cmsPages'])->name('cms-pages');
-        Route::post('update-cms-pages-status', [CmsController::class, 'updateCmsPagesStatus'])->name('update-cms-pages-status');
+        Route::get('cms-pages', [CmsAdminController::class, 'cmsPages'])->name('cms-pages');
+        Route::post('update-cms-pages-status', [CmsAdminController::class, 'updateCmsPagesStatus'])->name('update-cms-pages-status');
+        Route::match(['get', 'post'], 'add-edit-cms-pages/{id?}', [CmsAdminController::class, 'addEditCmsPages'])->name('add-edit-cms-pages');
+        Route::get('delete-cms-pages/{id}', [CmsAdminController::class, 'deleteCmsPages'])->name('delete-cms-pages');
     });
 });
 
