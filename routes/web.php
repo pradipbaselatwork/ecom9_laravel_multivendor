@@ -26,6 +26,7 @@ use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\front\PaypalController;
 use App\Http\Controllers\front\NewsletterController;
 use App\Models\Category;
+use App\Models\CmsPage;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
@@ -165,7 +166,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::get('subscribers', [NewsletterSubscriberController::class, 'subscribers'])->name('subscribers');
         Route::post('update-subscribers-status', [NewsletterSubscriberController::class, 'updateSubscribersStatus'])->name('update-subscribers-status');
         Route::get('delete-subscriber/{id}', [NewsletterSubscriberController::class, 'deleteSubscriber'])->name('delete-subscriber');
-       
+        Route::get('export-subscribers', [NewsletterSubscriberController::class, 'exportSubscribers'])->name('export-subscribers');
+
         //Cms Pages Route
         Route::get('cms-pages', [CmsAdminController::class, 'cmsPages'])->name('cms-pages');
         Route::post('update-cms-pages-status', [CmsAdminController::class, 'updateCmsPagesStatus'])->name('update-cms-pages-status');
@@ -228,7 +230,19 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     //
     Route::match(['get', 'post'], '/' . $url, [ProductsController::class, 'listing'])->name('listing');
 
+    //front Cms Pages
     Route::match(['get', 'post'],'contact', [CmsController::class, 'contact'])->name('contact');    
+
+    $cmsUrls = CmsPage::select('url')->where('status', 1)->get()->pluck('url')->toArray();
+    // foreach ($cmsUrls as $key => $url) {
+    //     dd($url);
+    //     Route::get('cms-pages', [CmsController::class, 'cmsPages'])->name('cms-pages');
+    // }
+    foreach ($cmsUrls as $url) {
+    // this will register GET /about-us, GET /faq, etc.
+    Route::get($url, [CmsController::class,'cmsPages'])
+         ->name("cms-{$url}");
+    }
 
     //add Subscriber email
     Route::post('user-subscriber-email', [NewsletterController::class, 'addSubscriberEmail'])->name('user-subscriber-email');

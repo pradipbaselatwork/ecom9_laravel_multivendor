@@ -7,6 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Subscribers</h4>
+                            <a style="max-width: 160px; float:right; display:inline-block;" href="{{ route('admin.export-subscribers') }}" class="btn btn-block btn-primary">Export Subscribers</a>
 
                             @if (Session::has('success_message'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">

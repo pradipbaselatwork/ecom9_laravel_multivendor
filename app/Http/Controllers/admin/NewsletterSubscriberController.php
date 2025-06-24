@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewsletterSubscriber;
+use App\Exports\SubscribersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
@@ -36,5 +38,10 @@ class NewsletterSubscriberController extends Controller
      $message = "Subscriber has been deleted successfulley!";
      return redirect()->back()->with('success_message',$message);
    }
+
+    public function exportSubscribers()
+    {
+        return Excel::download(new SubscribersExport, 'subscribers.xlsx');
+    }
 
 }

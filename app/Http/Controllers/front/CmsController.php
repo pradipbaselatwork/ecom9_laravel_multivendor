@@ -10,20 +10,52 @@ use Illuminate\Support\Facades\Mail;
 
 class CmsController extends Controller
 {
-    public function cmsPage(){
-        $currentRoute =url()->current();
-        $currentRoute =str_replace("http://www.ecom9laravelmultivendor.local.com/","",$currentRoute);
-        $cmsRoutes =CmsPage::select('url')->where('status',1)->get()->pluck('url')->toArray();
-        if(in_array($currentRoute,$cmsRoutes)){
-            $cmsPageDetails = CmsPage::where('url',$currentRoute)->first()->toArray();
-            $meta_title =  $cmsPageDetails['meta_title'];
-            $meta_keywords =  $cmsPageDetails['meta_keywords'];
-            $meta_description =  $cmsPageDetails['meta_description'];
-            return view('front.pages.cms_page')->with(compact('cmsPageDetails','meta_title','meta_description','meta_keywords'));
-        }else{
-            abort(404);
-        }
+    // public function cmsPages(){
+    //     $currentRoute =url()->current();
+    //     // dd($currentRoute);
+    //     $currentRoute =str_replace("http://www.ecom9laravelmultivendor.local.com/","",$currentRoute);
+    //     // dd($currentRoute);
+    //     $cmsRoutes =CmsPage::select('url')->where('status',1)->get()->pluck('url')->toArray();
+    //     // dd($cmsRoutes);
+
+    //     if(in_array($currentRoute,$cmsRoutes)){
+    //         $cmsPageDetails = CmsPage::where('url',$currentRoute)->first()->toArray();
+    //         // dd($cmsPageDetails);
+    //         $meta_title =  $cmsPageDetails['meta_title'];
+    //         $meta_keywords =  $cmsPageDetails['meta_keywords'];
+    //         $meta_description =  $cmsPageDetails['meta_description'];
+    //         // dd($cmsPageDetails);
+
+    //         return view('front.pages.about')->with(compact('cmsPageDetails','meta_title','meta_description','meta_keywords'));
+    //     }else{
+    //         abort(404);
+    //     }
+    // }
+    public function cmsPages(Request $request)
+    {
+        $slug = $request->path(); // e.g. "about-us"
+
+        $cms = CmsPage::where('url',$slug)->where('status',1)->firstOrFail();
+
+        $meta_title       = $cms->meta_title;
+        $meta_description = $cms->meta_description;
+        $meta_keywords    = $cms->meta_keywords;
+        $data             = $cms->toArray();
+
+        // map each slug to a Blade view
+        $viewMap = [
+            'about-us'       => 'about',
+            'faq'            => 'faq',
+            'privacy-policy' => 'privacy_policy',
+            // add more here as needed...
+        ];
+
+        // pick the view or fallback
+        $view = $viewMap[$slug] ?? 'cms_page';
+
+        return view("front.pages.{$view}", compact('data','meta_title','meta_description','meta_keywords'));
     }
+
 
     public function contact(Request $request)
     {
